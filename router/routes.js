@@ -12,6 +12,14 @@ module.exports = function(app) {
     app.route('/save')
         .post(todoList.save);
 
+    app.route('/update')
+        .post(todoList.update);
+
+    app.route('/delete')
+        .post(todoList.delete);
+
+    //----------------------------------\\
+
     app.route('/users')
         .get(todoList.users);
 

@@ -39,6 +39,44 @@ exports.save = function(req, res) {
     })
 };
 
+exports.update = function(req, res) {
+    var id = req.body.id;
+    var first_name = req.body.first_name;
+    var last_name = req.body.last_name;
+
+    connection.query('UPDATE person SET first_name = ?, last_name = ? WHERE id = ?', 
+    [ first_name, last_name, id ],
+    function(error, rows, fields){
+        if(error)
+        {
+            console.log(error)
+        }
+        else
+        {
+            res.redirect('/home');
+        }
+    })
+};
+
+exports.delete = function(req, res) {
+    var id = req.body.id;
+
+    connection.query('DELETE FROM person WHERE id = ?', 
+    [ id ],
+    function(error, rows, fields){
+        if(error)
+        {
+            console.log(error)
+        }
+        else
+        {
+            res.redirect('/home');
+        }
+    })
+};
+
+//------------------------------------------------------------------------------------\\
+
 exports.users = function(req, res) {
     connection.query('SELECT * FROM person', function (error, rows, fields){
         if(error){
